@@ -34,6 +34,17 @@ vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]])
 -- diagnostics
 vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float)
 
+-- comment
+vim.keymap.set("n", "<leader>/", function()
+	require("Comment.api").toggle.linewise.current()
+end, { desc = "Toggle comment" })
+vim.keymap.set(
+	"v",
+	"<leader>/",
+	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+	{ desc = "Toggle comment" }
+)
+
 -- ux
 vim.keymap.set("n", "<leader>qq", "<cmd>confirm q<CR>", { desc = "Quit current (confirm)" })
 vim.keymap.set("n", "<leader>qa", "<cmd>confirm qa<CR>", { desc = "Quit all (confirm)" })
