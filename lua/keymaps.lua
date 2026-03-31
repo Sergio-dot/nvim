@@ -20,14 +20,31 @@ vim.keymap.set("n", "<leader>gS", builtin.lsp_workspace_symbols)
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>")
 vim.keymap.set("n", "<leader>o", "<cmd>Neotree focus<CR>")
 
--- windows
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+-- windows (managed by smart-splits)
+vim.keymap.set("n", "<A-h>", function() require("smart-splits").resize_left() end, { desc = "Resize left" })
+vim.keymap.set("n", "<A-j>", function() require("smart-splits").resize_down() end, { desc = "Resize down" })
+vim.keymap.set("n", "<A-k>", function() require("smart-splits").resize_up() end, { desc = "Resize up" })
+vim.keymap.set("n", "<A-l>", function() require("smart-splits").resize_right() end, { desc = "Resize right" })
+vim.keymap.set("n", "<C-h>", function() require("smart-splits").move_cursor_left() end, { desc = "Move to left split" })
+vim.keymap.set("n", "<C-j>", function() require("smart-splits").move_cursor_down() end, { desc = "Move to bottom split" })
+vim.keymap.set("n", "<C-k>", function() require("smart-splits").move_cursor_up() end, { desc = "Move to top split" })
+vim.keymap.set("n", "<C-l>", function() require("smart-splits").move_cursor_right() end, { desc = "Move to right split" })
 
 -- terminal
-vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>")
+vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+vim.keymap.set("n", "<leader>tn", function()
+	local ok, tt = pcall(require, "toggleterm.terminal")
+	if not ok then return end
+	local terminals = tt.get_all()
+	local next_id = 0
+	for _, term in ipairs(terminals) do
+		if term.id > next_id then
+			next_id = term.id
+		end
+	end
+	vim.cmd((next_id + 1) .. "ToggleTerm")
+end, { desc = "New terminal" })
+vim.keymap.set("n", "<leader>ts", "<cmd>TermSelect<CR>", { desc = "Select terminal" })
 vim.keymap.set("t", "<Esc>t", "<cmd>ToggleTerm<CR>")
 vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]])
 
