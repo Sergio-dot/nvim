@@ -63,6 +63,7 @@ vim.keymap.set(
 )
 
 -- ux
+vim.keymap.set("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Theme switcher" })
 vim.keymap.set("n", "<leader>qq", "<cmd>confirm q<CR>", { desc = "Quit current (confirm)" })
 vim.keymap.set("n", "<leader>qa", "<cmd>confirm qa<CR>", { desc = "Quit all (confirm)" })
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR><Esc>")
