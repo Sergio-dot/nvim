@@ -20,6 +20,23 @@ return {
 		window = {
 			position = "left",
 			width = 30,
+			mappings = {
+				["O"] = function(state)
+					local node = state.tree:get_node()
+					local path = node:get_id()
+					vim.ui.open(path)
+				end,
+				["g"] = function(state)
+					local node = state.tree:get_node()
+					local path = node:get_id()
+					if node.type == "directory" then
+						require("telescope.builtin").live_grep({ cwd = path })
+					else
+						-- if it's a file, grep in its parent directory
+						require("telescope.builtin").live_grep({ cwd = vim.fn.fnamemodify(path, ":h") })
+					end
+				end,
+			},
 		},
 	},
 	config = function(_, opts)
