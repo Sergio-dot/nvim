@@ -29,13 +29,13 @@ return {
 						},
 						staticcheck = true,
 						hints = {
-							assignVariableTypes = true,
-							compositeLiteralFields = true,
-							compositeLiteralTypes = true,
-							constantValues = true,
-							functionTypeParameters = true,
-							parameterNames = true,
-							rangeVariableTypes = true,
+							assignVariableTypes = false,
+							compositeLiteralFields = false,
+							compositeLiteralTypes = false,
+							constantValues = false,
+							functionTypeParameters = false,
+							parameterNames = false,
+							rangeVariableTypes = false,
 						},
 					},
 				},
@@ -65,6 +65,26 @@ return {
 			})
 
 			vim.lsp.enable("lua_ls")
+
+			-- format + organize imports on save (Go only)
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.go",
+				callback = function()
+					-- Organize imports
+					local params = vim.lsp.util.make_range_params()
+					params.context = { only = { "source.organizeImports" } }
+					local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 1000)
+					for _, res in pairs(result or {}) do
+						for _, action in pairs(res.result or {}) do
+							if action.edit then
+								vim.lsp.util.apply_workspace_edit(action.edit, "utf-16")
+							end
+						end
+					end
+					-- Format
+					vim.lsp.buf.format({ async = false })
+				end,
+			})
 
 			-- format on save (Lua only)
 			vim.api.nvim_create_autocmd("BufWritePre", {

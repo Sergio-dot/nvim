@@ -5,22 +5,29 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			options = {
-				theme = "auto", -- Automatically matches your github-dark theme
+				theme = "auto", -- Matches your github-dark theme
 				icons_enabled = true,
-				component_separators = { left = "|", right = "|" },
-				section_separators = { left = "", right = "" },
+				component_separators = "",
+				section_separators = "",
 				globalstatus = true,
 			},
 			sections = {
-				lualine_a = {
-					{ "mode", fmt = function(str) return str:sub(1, 1) end }, -- Minimal mode (N, I, V)
-				},
-				lualine_b = { "branch", "diff" },
+				lualine_a = {},
+				lualine_b = {},
 				lualine_c = {
+					{
+						"mode",
+						fmt = function(str)
+							return "● " .. str
+						end,
+						color = { gui = "bold" },
+					},
+					{ "branch", icon = "" },
 					{
 						"filename",
 						file_status = true,
-						path = 1, -- Show relative path
+						path = 1,
+						color = { gui = "bold" },
 					},
 				},
 				lualine_x = {
@@ -30,9 +37,11 @@ return {
 						symbols = { error = "󰅚 ", warn = "󰀪 ", info = "󰋽 ", hint = "󰌶 " },
 					},
 					"filetype",
+					"progress",
+					"location",
 				},
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
+				lualine_y = {},
+				lualine_z = {},
 			},
 		},
 	},
@@ -49,6 +58,7 @@ return {
 		opts = {
 			-- configurations go here
 			show_modified = true,
+			exclude_filetypes = { "netrw", "toggleterm", "neo-tree", "snacks_win", "Gemini", "snacks_notif" },
 		},
 	},
 }

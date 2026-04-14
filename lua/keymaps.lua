@@ -105,8 +105,17 @@ vim.keymap.set("n", "<leader>gt", "<cmd>GoTest<CR>", { desc = "Go: Run tests" })
 vim.keymap.set("n", "<leader>gT", "<cmd>GoTestFunc<CR>", { desc = "Go: Run current test function" })
 vim.keymap.set("n", "<leader>gc", "<cmd>GoCoverage -t<CR>", { desc = "Go: Show test coverage" })
 vim.keymap.set("n", "<leader>ga", "<cmd>GoAddTag<CR>", { desc = "Go: Add struct tags" })
+vim.keymap.set("n", "<leader>go", "<cmd>GoAddTag json omitempty<CR>", { desc = "Go: Add JSON tags with omitempty" })
 vim.keymap.set("n", "<leader>ge", "<cmd>GoIfErr<CR>", { desc = "Go: Add if err != nil" })
 vim.keymap.set("n", "<leader>gi", "<cmd>GoImpl<CR>", { desc = "Go: Generate interface implementation" })
+vim.keymap.set("n", "<leader>gl", "<cmd>GoAlt<CR>", { desc = "Go: Switch to alternate (test) file" })
+vim.keymap.set("n", "<leader>gh", "<cmd>GoDoc<CR>", { desc = "Go: Open documentation" })
+
+-- UI: Toggles
+vim.keymap.set("n", "<leader>ih", function()
+	local current_setting = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+	vim.lsp.inlay_hint.enable(not current_setting, { bufnr = 0 })
+end, { desc = "UI: Toggle Inlay Hints" })
 
 -- DEBUG: Debug Adapter Protocol (nvim-dap)
 vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Debug: Toggle breakpoint" })

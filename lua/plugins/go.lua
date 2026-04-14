@@ -20,10 +20,12 @@ return {
 				lsp_codelens = false,
 				-- Inlay hints
 				lsp_inlay_hints = {
-					enable = true,
+					enable = false,
 				},
 				-- Tests configuration
 				test_runner = "go", -- or 'richgo', 'delve'
+				-- Default tags
+				tag_transform = "camelcase",
 			})
 		end,
 		event = { "CmdlineEnter" },

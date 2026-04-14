@@ -13,6 +13,9 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 -- UX
+vim.opt.winminheight = 0
+vim.opt.winminwidth = 0
+vim.opt.cmdheight = 0
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.signcolumn = "yes"
@@ -60,3 +63,4 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 require("keymaps")
 require("autocmds.git")
+require("autocmds.ux")
