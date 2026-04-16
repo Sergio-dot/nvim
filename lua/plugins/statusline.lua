@@ -47,18 +47,18 @@ return {
 	},
 
 	-- Winbar (The "Breadcrumbs" at the top - Very IntelliJ)
-	{
-		"utilyre/barbecue.nvim",
-		name = "barbecue",
-		version = "*",
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons", -- optional dependency
-		},
-		opts = {
-			-- configurations go here
-			show_modified = true,
-			exclude_filetypes = { "netrw", "toggleterm", "neo-tree", "snacks_win", "Gemini", "snacks_notif" },
-		},
-	},
+	-- {
+	-- 	"utilyre/barbecue.nvim",
+	-- 	name = "barbecue",
+	-- 	version = "*",
+	-- 	dependencies = {
+	-- 		"SmiteshP/nvim-navic",
+	-- 		"nvim-tree/nvim-web-devicons", -- optional dependency
+	-- 	},
+	-- 	opts = {
+	-- 		-- configurations go here
+	-- 		show_modified = true,
+	-- 		exclude_filetypes = { "netrw", "toggleterm", "neo-tree", "snacks_win", "Gemini", "snacks_notif" },
+	-- 	},
+	-- },
 }

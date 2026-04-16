@@ -1,21 +1,26 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+		},
 		config = function()
 			-- capabilities (cmp integration)
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 			-- Breadcrumbs (navic) attachment
-			local navic = require("nvim-navic")
-			vim.api.nvim_create_autocmd("LspAttach", {
-				callback = function(args)
-					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					if client and client.server_capabilities.documentSymbolProvider then
-						navic.attach(client, args.buf)
-					end
-				end,
-			})
+			local navic_ok, navic = pcall(require, "nvim-navic")
+			if navic_ok then
+				vim.api.nvim_create_autocmd("LspAttach", {
+					callback = function(args)
+						local client = vim.lsp.get_client_by_id(args.data.client_id)
+						if client and client.server_capabilities.documentSymbolProvider then
+							navic.attach(client, args.buf)
+						end
+					end,
+				})
+			end
 
 			------------------------------------------------------------------
 			-- Go (gopls)
