@@ -14,11 +14,13 @@ vim.keymap.set("n", "<leader>fd", function()
 end, { desc = "Grep in current directory" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help tags" })
+vim.keymap.set("n", "<leader>fl", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Find: Errors in current file" })
+vim.keymap.set("n", "<leader>fw", "<cmd>Telescope diagnostics<CR>", { desc = "Find: Workspace errors" })
 
 -- LSP navigation
-vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation hover" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Go to references" })
 vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definition" })
 vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Go to implementation" })
@@ -26,8 +28,8 @@ vim.keymap.set("n", "<leader>gs", builtin.lsp_document_symbols, { desc = "Find s
 vim.keymap.set("n", "<leader>gS", builtin.lsp_workspace_symbols, { desc = "Find symbols in current workspace" })
 
 -- neo-tree
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>")
-vim.keymap.set("n", "<leader>o", "<cmd>Neotree focus<CR>")
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Explorer: Toggle tree" })
+vim.keymap.set("n", "<leader>o", "<cmd>Neotree focus<CR>", { desc = "Explorer: Focus tree" })
 
 -- windows (managed by smart-splits)
 vim.keymap.set("n", "<A-h>", function()
@@ -72,11 +74,11 @@ vim.keymap.set("n", "<leader>tn", function()
 	vim.cmd((next_id + 1) .. "ToggleTerm")
 end, { desc = "New terminal" })
 vim.keymap.set("n", "<leader>ts", "<cmd>TermSelect<CR>", { desc = "Select terminal" })
-vim.keymap.set("t", "<Esc>t", "<cmd>ToggleTerm<CR>")
-vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]])
+vim.keymap.set("t", "<Esc>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- diagnostics
-vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>df", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
 -- comment
 vim.keymap.set("n", "<leader>/", function()
@@ -92,12 +94,18 @@ vim.keymap.set(
 -- ux
 vim.keymap.set("n", "<leader>qq", "<cmd>confirm q<CR>", { desc = "Quit current (confirm)" })
 vim.keymap.set("n", "<leader>qa", "<cmd>confirm qa<CR>", { desc = "Quit all (confirm)" })
-vim.keymap.set("n", "<Esc>", "<cmd>noh<CR><Esc>")
+vim.keymap.set("n", "<Esc>", "<cmd>noh<CR><Esc>", { desc = "Clear search highlight" })
 
 -- format
 vim.keymap.set("n", "<leader>f", function()
 	vim.lsp.buf.format({ async = true })
-end)
+end, { desc = "Format current buffer" })
+
+-- TABS / BUFFERS (bufferline)
+vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>", { desc = "Tab: Prev" })
+vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>", { desc = "Tab: Next" })
+vim.keymap.set("n", "<leader>x", "<cmd>Bdelete<CR>", { desc = "Tab: Close current" })
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePick<CR>", { desc = "Tab: Pick by letter" })
 
 -- GO: Advanced Features (ray-x/go.nvim)
 vim.keymap.set("n", "<leader>gx", "<cmd>GoRun<CR>", { desc = "Go: Run project" })
