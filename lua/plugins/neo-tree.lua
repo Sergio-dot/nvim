@@ -7,6 +7,7 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	opts = {
+		open_files_in_tabs = true,
 		filesystem = {
 			filtered_items = {
 				hide_dotfiles = false,
