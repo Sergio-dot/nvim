@@ -3,6 +3,7 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"SmiteshP/nvim-navic",
+			"b0o/SchemaStore.nvim",
 		},
 		config = function()
 			-- capabilities (cmp integration)
@@ -70,6 +71,27 @@ return {
 			})
 
 			vim.lsp.enable("lua_ls")
+
+			------------------------------------------------------------------
+			-- YAML (yamlls)
+			------------------------------------------------------------------
+			vim.lsp.config("yamlls", {
+				capabilities = capabilities,
+				settings = {
+					yaml = {
+						schemaStore = {
+							-- You must disable built-in schemaStore support if you want to use
+							-- schemaStore.nvim and its advanced features
+							enable = false,
+							-- Avoid TypeError: Cannot read property 'url' of undefined
+							url = "",
+						},
+						schemas = require("schemastore").yaml.schemas(),
+					},
+				},
+			})
+
+			vim.lsp.enable("yamlls")
 
 			-- format + organize imports on save (Go only)
 			vim.api.nvim_create_autocmd("BufWritePre", {
