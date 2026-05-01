@@ -93,6 +93,124 @@ return {
 
 			vim.lsp.enable("yamlls")
 
+			------------------------------------------------------------------
+			-- TypeScript/JavaScript (vtsls)
+			------------------------------------------------------------------
+			vim.lsp.config("vtsls", {
+				capabilities = capabilities,
+				settings = {
+					typescript = {
+						updateImportsOnFileMove = { enabled = "always" },
+						suggest = {
+							completeFunctionCalls = false,
+						},
+						preferences = {
+							jsxAttributeCompletionStyle = "auto",
+							includePackageJsonAutoImports = "always",
+						},
+						inlayHints = {
+							parameterNames = { enabled = "literals" },
+							parameterTypes = { enabled = true },
+							variableTypes = { enabled = true },
+							propertyDeclarationTypes = { enabled = true },
+							functionLikeReturnTypes = { enabled = true },
+							enumMemberValues = { enabled = true },
+						},
+					},
+				},
+			})
+
+			vim.lsp.enable("vtsls")
+
+			------------------------------------------------------------------
+			-- ESLint (eslint)
+			------------------------------------------------------------------
+			vim.lsp.config("eslint", {
+				capabilities = capabilities,
+				settings = {
+					workingDirectories = { mode = "auto" },
+				},
+			})
+
+			vim.lsp.enable("eslint")
+
+			------------------------------------------------------------------
+			-- Emmet (emmet_language_server)
+			------------------------------------------------------------------
+			vim.lsp.config("emmet_language_server", {
+				capabilities = capabilities,
+				filetypes = {
+					"css",
+					"eruby",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"less",
+					"sass",
+					"scss",
+					"pug",
+					"typescriptreact",
+				},
+			})
+
+			vim.lsp.enable("emmet_language_server")
+
+			------------------------------------------------------------------
+			-- Tailwind CSS (tailwindcss)
+			------------------------------------------------------------------
+			vim.lsp.config("tailwindcss", {
+				capabilities = capabilities,
+				filetypes = {
+					"aspnetcorerazor",
+					"astro",
+					"astro-markdown",
+					"blade",
+					"clojure",
+					"django-html",
+					"htmldjango",
+					"edge",
+					"eelixir",
+					"elixir",
+					"ejs",
+					"erb",
+					"handlebars",
+					"hbs",
+					"hipe",
+					"html",
+					"html-eex",
+					"heex",
+					"jade",
+					"leaf",
+					"liquid",
+					"markdown",
+					"mdx",
+					"mustache",
+					"njk",
+					"nunjucks",
+					"php",
+					"razor",
+					"slim",
+					"twig",
+					"css",
+					"less",
+					"postcss",
+					"sass",
+					"scss",
+					"stylus",
+					"sugarss",
+					"javascript",
+					"javascriptreact",
+					"reason",
+					"rescript",
+					"typescript",
+					"typescriptreact",
+					"vue",
+					"svelte",
+				},
+			})
+
+			vim.lsp.enable("tailwindcss")
+
 			-- format + organize imports on save (Go only)
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				pattern = "*.go",

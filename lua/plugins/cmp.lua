@@ -8,16 +8,26 @@ return {
 			"hrsh7th/cmp-cmdline",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
 			"windwp/nvim-autopairs",
+			{
+				"roobert/tailwindcss-colorizer-cmp.nvim",
+				config = true,
+			},
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
+			require("luasnip.loaders.from_vscode").lazy_load()
+
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 			cmp.setup({
+				formatting = {
+					format = require("tailwindcss-colorizer-cmp").formatter,
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)

@@ -3,7 +3,7 @@ return {
 	branch = "master",
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "go", "gowork", "gomod", "lua", "yaml" },
+			ensure_installed = { "go", "gowork", "gomod", "lua", "yaml", "typescript", "tsx", "css", "scss" },
 			modules = {},
 			ignore_install = {},
 			sync_install = false,
