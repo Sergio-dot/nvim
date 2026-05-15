@@ -1,32 +1,45 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	branch = "master",
+	branch = "main",
+	lazy = false,
+	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "go", "gowork", "gomod", "lua", "yaml", "typescript", "tsx", "css", "scss" },
-			modules = {},
-			ignore_install = {},
-			sync_install = false,
-			auto_install = true,
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
+		local ts = require("nvim-treesitter")
+
+		ts.setup({
+			-- Configuration options for the new 'main' branch
+			-- Parsers are installed in the standard data directory by default
+		})
+
+		-- Enable highlighting via Neovim's built-in Treesitter API
+		-- This is required on the 'main' branch rewrite
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = {
+				"go",
+				"gowork",
+				"gomod",
+				"lua",
+				"yaml",
+				"typescript",
+				"tsx",
+				"css",
+				"scss",
+				"html",
+				"markdown",
+				"markdown_inline",
 			},
-			incremental_selection = {
-				enable = true,
-			},
-			textobjects = {
-				select = {
-					enable = true,
-				},
-			},
-			folding = {
-				enable = true,
-				enable_fold_comments = true,
-			},
-			playground = {
-				enable = true,
-			},
+			callback = function()
+				vim.treesitter.start()
+			end,
+		})
+
+		-- Enable Treesitter-based folding
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = { "go", "lua", "typescript", "tsx", "html", "css" },
+			callback = function()
+				vim.wo.foldmethod = "expr"
+				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			end,
 		})
 	end,
 }

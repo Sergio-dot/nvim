@@ -124,6 +124,8 @@ vim.keymap.set("n", "<leader>ih", function()
 	local current_setting = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
 	vim.lsp.inlay_hint.enable(not current_setting, { bufnr = 0 })
 end, { desc = "UI: Toggle Inlay Hints" })
+vim.keymap.set("n", "<leader>mv", "<cmd>Markview toggle<CR>", { desc = "UI: Toggle Markview" })
+vim.keymap.set("n", "<leader>ms", "<cmd>Markview splitToggle<CR>", { desc = "UI: Toggle Markview Split" })
 
 -- DEBUG: Debug Adapter Protocol (nvim-dap)
 vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { desc = "Debug: Toggle breakpoint" })
