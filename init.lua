@@ -20,6 +20,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.cursorline = true
+vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
