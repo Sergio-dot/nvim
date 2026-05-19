@@ -37,7 +37,7 @@ return {
 				mapping = cmp.mapping.preset.insert({
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
+						if cmp.visible() and cmp.get_active_entry() then
 							cmp.confirm({ select = false })
 						else
 							fallback()

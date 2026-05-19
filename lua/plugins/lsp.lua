@@ -211,6 +211,15 @@ return {
 
 			vim.lsp.enable("tailwindcss")
 
+			------------------------------------------------------------------
+			-- Bash (bashls)
+			------------------------------------------------------------------
+			vim.lsp.config("bashls", {
+				capabilities = capabilities,
+			})
+
+			vim.lsp.enable("bashls")
+
 			-- format + organize imports on save (Go only)
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				pattern = "*.go",

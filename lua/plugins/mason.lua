@@ -15,6 +15,7 @@ return {
 				"eslint",
 				"emmet_language_server",
 				"tailwindcss",
+				"bashls",
 			},
 		},
 	},
@@ -24,6 +25,8 @@ return {
 		opts = {
 			ensure_installed = {
 				"prettier",
+				"shfmt",
+				"shellcheck",
 			},
 		},
 	},

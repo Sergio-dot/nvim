@@ -27,6 +27,8 @@ return {
 				"html",
 				"markdown",
 				"markdown_inline",
+				"bash",
+				"sh",
 			},
 			callback = function()
 				vim.treesitter.start()
@@ -35,7 +37,7 @@ return {
 
 		-- Enable Treesitter-based folding
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "go", "lua", "typescript", "tsx", "html", "css" },
+			pattern = { "go", "lua", "typescript", "tsx", "html", "css", "bash", "sh" },
 			callback = function()
 				vim.wo.foldmethod = "expr"
 				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"

@@ -22,6 +22,8 @@ return {
 			html = { "prettier" },
 			json = { "prettier" },
 			yaml = { "prettier" },
+			sh = { "shfmt" },
+			bash = { "shfmt" },
 		},
 		format_on_save = {
 			timeout_ms = 500,
