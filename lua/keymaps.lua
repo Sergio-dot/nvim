@@ -31,9 +31,6 @@ vim.keymap.set("n", "<leader>gS", builtin.lsp_workspace_symbols, { desc = "Find 
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Explorer: Toggle tree" })
 vim.keymap.set("n", "<leader>o", "<cmd>Neotree focus<CR>", { desc = "Explorer: Focus tree" })
 
--- oil
-vim.keymap.set("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory in Oil" })
-
 -- windows (managed by smart-splits)
 vim.keymap.set("n", "<A-h>", function()
 	require("smart-splits").resize_left()
