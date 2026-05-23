@@ -25,6 +25,10 @@ return {
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 			cmp.setup({
+				completion = {
+					completeopt = "menu,menuone,noselect",
+				},
+				preselect = cmp.PreselectMode.None,
 				formatting = {
 					format = require("tailwindcss-colorizer-cmp").formatter,
 				},
