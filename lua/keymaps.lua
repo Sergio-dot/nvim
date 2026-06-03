@@ -20,12 +20,16 @@ vim.keymap.set("n", "<leader>fw", "<cmd>Telescope diagnostics<CR>", { desc = "Fi
 -- LSP navigation
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation hover" })
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "Go to references" })
 vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "Go to definition" })
 vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "Go to implementation" })
 vim.keymap.set("n", "<leader>gs", builtin.lsp_document_symbols, { desc = "Find symbols in current document" })
 vim.keymap.set("n", "<leader>gS", builtin.lsp_workspace_symbols, { desc = "Find symbols in current workspace" })
+
+-- gitsigns.nvim
+vim.keymap.set("n", "<leader>gb", function()
+	require("gitsigns").blame_line({ full = true })
+end)
 
 -- neo-tree
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Explorer: Toggle tree" })
