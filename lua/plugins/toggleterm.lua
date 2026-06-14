@@ -15,7 +15,7 @@ return {
 		winbar = {
 			enabled = true,
 			name_formatter = function(term)
-				return term.name
+				return term.id .. ": " .. (term.cmd or vim.o.shell)
 			end,
 		},
 	},

@@ -20,6 +20,8 @@ return {
 				"gomod",
 				"lua",
 				"yaml",
+				"javascript",
+				"javascriptreact",
 				"typescript",
 				"tsx",
 				"css",
@@ -37,7 +39,7 @@ return {
 
 		-- Enable Treesitter-based folding
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "go", "lua", "typescript", "tsx", "html", "css", "bash", "sh" },
+			pattern = { "go", "lua", "javascript", "javascriptreact", "typescript", "tsx", "html", "css", "bash", "sh" },
 			callback = function()
 				vim.wo.foldmethod = "expr"
 				vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
