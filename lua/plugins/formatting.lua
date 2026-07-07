@@ -4,16 +4,18 @@ return {
 	cmd = { "ConformInfo" },
 	keys = {
 		{
-			"<leader>f",
+			"<leader>cf",
 			function()
 				require("conform").format({ async = true, lsp_fallback = true })
 			end,
-			mode = "",
+			mode = "n",
 			desc = "Format buffer",
 		},
 	},
 	opts = {
 		formatters_by_ft = {
+			go = { "goimports", "gofumpt" },
+			gomod = { "gofumpt" },
 			javascript = { "prettier" },
 			typescript = { "prettier" },
 			javascriptreact = { "prettier" },

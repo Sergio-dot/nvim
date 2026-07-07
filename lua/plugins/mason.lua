@@ -10,7 +10,6 @@ return {
 			ensure_installed = {
 				"gopls",
 				"lua_ls",
-				"jdtls",
 				"vtsls",
 				"eslint",
 				"emmet_language_server",
@@ -27,6 +26,8 @@ return {
 				"prettier",
 				"shfmt",
 				"shellcheck",
+				"goimports",
+				"gofumpt",
 			},
 		},
 	},

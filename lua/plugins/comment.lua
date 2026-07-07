@@ -1,5 +1,6 @@
 return {
 	"numToStr/Comment.nvim",
+	event = "VeryLazy",
 	dependencies = {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
@@ -60,8 +61,6 @@ return {
 			---Extra mapping; `gco`, `gcO`, `gcA`
 			extra = true,
 		},
-		---Function to be called before (pre) and after (post) commenting
-		pre_hook = nil,
 		---Function to be called after commenting
 		post_hook = nil,
 	},

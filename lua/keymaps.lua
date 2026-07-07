@@ -116,17 +116,6 @@ vim.keymap.set("n", "<leader>qq", "<cmd>confirm q<CR>", { desc = "Quit current (
 vim.keymap.set("n", "<leader>qa", "<cmd>confirm qa<CR>", { desc = "Quit all (confirm)" })
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR><Esc>", { desc = "Clear search highlight" })
 
--- format
-vim.keymap.set("n", "<leader>f", function()
-	vim.lsp.buf.format({ async = true })
-end, { desc = "Format current buffer" })
-
--- TABS / BUFFERS (bufferline)
-vim.keymap.set("n", "H", "<cmd>BufferLineCyclePrev<CR>", { desc = "Tab: Prev" })
-vim.keymap.set("n", "L", "<cmd>BufferLineCycleNext<CR>", { desc = "Tab: Next" })
-vim.keymap.set("n", "<leader>x", "<cmd>Bdelete<CR>", { desc = "Tab: Close current" })
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLinePick<CR>", { desc = "Tab: Pick by letter" })
-
 -- GO: Advanced Features (ray-x/go.nvim)
 vim.keymap.set("n", "<leader>gx", "<cmd>GoRun<CR>", { desc = "Go: Run project" })
 vim.keymap.set("n", "<leader>gt", "<cmd>GoTest<CR>", { desc = "Go: Run tests" })
