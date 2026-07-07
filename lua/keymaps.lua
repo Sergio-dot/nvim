@@ -16,6 +16,19 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffers" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Help tags" })
 vim.keymap.set("n", "<leader>fl", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Find: Errors in current file" })
 vim.keymap.set("n", "<leader>fw", "<cmd>Telescope diagnostics<CR>", { desc = "Find: Workspace errors" })
+vim.keymap.set("n", "<leader>fvv", function()
+	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+end, { desc = "Grep text" })
+vim.keymap.set("v", "<leader>fvv", function()
+	vim.cmd('noau normal! "ay"')
+	builtin.grep_string({ search = vim.fn.getreg("a") })
+end, { desc = "Grep text selected" })
+vim.keymap.set("n", "<leader>fp", function()
+	local path = vim.fn.input("Search in path: ", vim.fn.expand("%:p:h"), "file")
+	if path and #path > 0 then
+		builtin.live_grep({ search_dirs = { vim.fn.expand(path) } })
+	end
+end, { desc = "Grep in directory (dynamic)" })
 
 -- LSP navigation
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation hover" })
