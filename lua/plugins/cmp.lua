@@ -27,6 +27,8 @@ return {
 			cmp.setup({
 				completion = {
 					completeopt = "menu,menuone,noselect",
+					autocomplete = { cmp.TriggerEvent.TextChanged, cmp.TriggerEvent.InsertEnter },
+					keyword_length = 1,
 				},
 				preselect = cmp.PreselectMode.None,
 				formatting = {
